@@ -1,0 +1,47 @@
+/* Element Selector */
+h3 
+{
+  color:red;
+  text-align: center;
+  background-color: lightpink;
+}
+/* Class Selector */
+.mystyle 
+ {
+  color:aqua;
+  text-align: center;
+  
+  
+ }
+ 
+ /* id selector*/
+ #mymenu_style
+ {
+  
+  text-align: center;
+
+ }
+
+ .box_table>table {
+  border-width: 1px;
+
+ }
+/* if someone wants to print something, display nothing*/
+ @media print {
+  .screen_only {
+    display:none;
+  }
+ }
+
+ @media (min-width: 650px) {
+  body {
+    background-color:pink;
+
+  }
+ }
+
+ /*Bootstrap*/
+ <button type="button" class="btn">Basic</button>
+ <a href="Google.com"> class="btn btn" Try me</a>
+
+ 
