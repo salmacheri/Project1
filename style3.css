@@ -1,14 +1,13 @@
 /* Element Selector */
 h3 
 {
-  color:red;
-  text-align: center;
-  background-color: lightpink;
+  color:white;
+  
 }
 /* Class Selector */
 .mystyle 
  {
-  color:aqua;
+  color:mediumorchid;
   text-align: center;
   
   
