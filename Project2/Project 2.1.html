@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Task List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .task {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Task List</h1>
+  <p>Add tasks, mark them as completed, or remove them!</p>
+  
+  <!-- Form to add new tasks -->
+  <div>
+    <label for="taskTitle">Task:</label>
+    <input type="text" id="taskTitle" placeholder="Enter task" required>
+    <button onclick="addTask()">Add Task</button>
+  </div>
+  
+  <!-- Area to display tasks -->
+  <h2>Tasks</h2>
+  <div id="taskList"></div>
+  
+  <script>
+    // Array to store tasks
+    let tasks = [];
+
+    // Function to add a new task
+    function addTask() {
+      // Get the task title from the input
+      const taskTitle = document.getElementById('taskTitle').value;
+
+      // Validate input
+      if (taskTitle.trim() === '') {
+        alert('Please enter a task!');
+        return;
+      }
+
+      // Create a new task object
+      const task = {
+        title: taskTitle,
+        completed: false
+      };
+
+      // Add task to the array
+      tasks.push(task);
+
+      // Clear the input
+      document.getElementById('taskTitle').value = '';
+
+      // Update the task list on the page
+      updateTaskList();
+    }
+
+    // Function to update the task list display
+    function updateTaskList() {
+      // Get the task list container
+      const taskList = document.getElementById('taskList');
+      
+      // Clear existing tasks in the display
+      taskList.innerHTML = '';
+
+      // Loop through tasks and add them to the page
+      tasks.forEach((task, index) => {
+        const taskDiv = document.createElement('div');
+        taskDiv.className = 'task';
+        
+        // Add completed class if the task is marked as completed
+        if (task.completed) {
+          taskDiv.classList.add('completed');
+        }
+        
+        taskDiv.innerHTML = `
+          <span>${task.title}</span>
+          <button onclick="toggleComplete(${index})">
+            ${task.completed ? 'Mark Pending' : 'Mark Completed'}
+          </button>
+          <button onclick="removeTask(${index})">Remove</button>
+        `;
+        
+        taskList.appendChild(taskDiv);
+      });
+    }
+
+    // Function to toggle a task's completion status
+    function toggleComplete(index) {
+      tasks[index].completed = !tasks[index].completed;
+      updateTaskList();
+    }
+
+    // Function to remove a task
+    function removeTask(index) {
+      tasks.splice(index, 1);
+      updateTaskList();
+    }
+  </script>
+</body>
+</html>
